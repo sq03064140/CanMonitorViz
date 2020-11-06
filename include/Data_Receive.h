@@ -73,6 +73,21 @@ void *Signal_Recieve_Thread_Fun(void *args)
         plot_data->obstacles.back().lane = middle_lane;
         plot_data->obstacles.push_back(OBSTACLE(0.0, 8.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
         plot_data->obstacles.back().lane = left_left_lane;
+        plot_data->obstacles.push_back(OBSTACLE(12.0, 0.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
+        plot_data->obstacles.back().lane = middle_lane;
+        plot_data->obstacles.back().source = front_radar;
+        plot_data->obstacles.push_back(OBSTACLE(22.0, 0.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
+        plot_data->obstacles.back().lane = middle_lane;
+        plot_data->obstacles.back().source = corner_radar;
+        plot_data->obstacles.push_back(OBSTACLE(32.0, 0.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
+        plot_data->obstacles.back().lane = middle_lane;
+        plot_data->obstacles.back().source = fusion;
+        plot_data->obstacles.push_back(OBSTACLE(10.0, 8.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
+        plot_data->obstacles.back().lane = left_left_lane;
+        plot_data->obstacles.back().source = fusion;
+        plot_data->obstacles.push_back(OBSTACLE(10.0, 4.0, 0.0, car, true, 3.0, 1.8)); //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
+        plot_data->obstacles.back().lane = left_lane;
+        plot_data->obstacles.back().source = fusion;
         //plot_data->obstacles.push_back(OBSTACLE(0.0,8.0,0.0,car,true,3.0,1.8));      //建议用这个语句，一行解决赋值问题 ，构造函数的格式在类里有-----KDK //容量+1
         //plot_data->obstacles.push_back(OBSTACLE(4.0,-8.0,0.0,car,true,3.0,1.8));
         //plot_data->obstacles[1].x=0.0;

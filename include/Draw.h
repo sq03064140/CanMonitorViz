@@ -98,24 +98,24 @@ private:
         }
         return;
 
-//        switch (key)
-//        {
-//        case 'p':{
-//            cout<<"PPPPPPPP"<<endl;
-//            pause_mutex.lock();
-//        };
-//        case 'g':{
-//            cout<<"GGGGGGGG"<<endl;
-//            pause_mutex.unlock();
-//        };
-//        case 27:{   //ESC键
-//            cout<<"KKKKKKK"<<endl;
-//            exit(0);
-//            break;
-//        };
-//        default:
-//            break;
-//        }
+        //        switch (key)
+        //        {
+        //        case 'p':{
+        //            cout<<"PPPPPPPP"<<endl;
+        //            pause_mutex.lock();
+        //        };
+        //        case 'g':{
+        //            cout<<"GGGGGGGG"<<endl;
+        //            pause_mutex.unlock();
+        //        };
+        //        case 27:{   //ESC键
+        //            cout<<"KKKKKKK"<<endl;
+        //            exit(0);
+        //            break;
+        //        };
+        //        default:
+        //            break;
+        //        }
     }
 
 
@@ -147,17 +147,17 @@ private:
         glBegin(GL_POINTS);
 
         for(size_t i=0;i<tmp_plot_data.lines.size();i++){
-           if(tmp_plot_data.lines[i].type==plan){
-                       glColor3f(1.0, 0.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-           }
-           else if (tmp_plot_data.lines[i].type==forecast) {
-                          glColor3f(0.0, 1.0, 1.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-           }
-           else {
-                         glColor3f(0.0, 1.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-           }
+            if(tmp_plot_data.lines[i].type==plan){
+                glColor3f(1.0, 0.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+            }
+            else if (tmp_plot_data.lines[i].type==forecast) {
+                glColor3f(0.0, 1.0, 1.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+            }
+            else {
+                glColor3f(0.0, 1.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+            }
 
-           vector<vector<GLfloat>> plot_points;
+            vector<vector<GLfloat>> plot_points;
             plot_points=draw->get_line_point(tmp_plot_data.lines[i],PLOT_SCALE);
             for (size_t i = 0; i < plot_points.size(); i++){
                 glVertex3fv(&plot_points[i][0]);
@@ -170,25 +170,35 @@ private:
         //glTranslatef(0.0f, -2.0f, 0.0f); //Axis Ofset Seting !!!!!! --Daike Kang
         //glPointSize(5.0);
         glBegin(GL_POINTS);
-
+        double plot_brightness=0.65;
         for(size_t i=0;i<tmp_plot_data.obstacles.size();i++){
-           if(tmp_plot_data.obstacles[i].type==ego){
-                       glColor3f(1.0, 0.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-           }
-           else {
-               if(tmp_plot_data.obstacles[i].lane==left_lane || tmp_plot_data.obstacles[i].lane==right_lane){
-                    glColor3f(0.0, 1.0, 1.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-               }
-               else if(tmp_plot_data.obstacles[i].lane==middle_lane){
-                    glColor3f(0.0, 0.5, 1.5);  //Color is here !!!!!!!!!!!! --Daike Kang
-               }
-               else {
-                    glColor3f(1.0, 1.0, 1.0);  //Color is here !!!!!!!!!!!! --Daike Kang
-               }
+            if(tmp_plot_data.obstacles[i].type==ego){
+                glColor3f(0.0, 1.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+            }
+            else {
+                if(tmp_plot_data.obstacles[i].source == front_radar){
+                    glColor3f(plot_brightness*1.0, 0.0, 0.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+                }
+                else if (tmp_plot_data.obstacles[i].source == corner_radar) {
+                    glColor3f(plot_brightness*1.0, plot_brightness*0.5, plot_brightness*0.5);  //Color is here !!!!!!!!!!!! --Daike Kang
+                }
+                else {
+                    if(tmp_plot_data.obstacles[i].source == fusion){
+                        plot_brightness=1.6;
+                    }
+                    if(tmp_plot_data.obstacles[i].lane==left_lane || tmp_plot_data.obstacles[i].lane==right_lane){
+                        glColor3f(plot_brightness*0.6, plot_brightness*0.5, plot_brightness*0.7);  //Color is here !!!!!!!!!!!! --Daike Kang
+                    }
+                    else if(tmp_plot_data.obstacles[i].lane==middle_lane){
+                        glColor3f(0.0, plot_brightness*0.5,plot_brightness* 1.5);  //Color is here !!!!!!!!!!!! --Daike Kang
+                    }
+                    else {
+                        glColor3f(plot_brightness*1.0, plot_brightness*1.0, plot_brightness*1.0);  //Color is here !!!!!!!!!!!! --Daike Kang
+                    }
+                }
+            }
 
-           }
-
-           vector<vector<GLfloat>> plot_points;
+            vector<vector<GLfloat>> plot_points;
             plot_points=draw->get_obstacle_point(tmp_plot_data.obstacles[i],PLOT_SCALE,0.25);
             for (size_t i = 0; i < plot_points.size(); i++){
                 glVertex3fv(&plot_points[i][0]);
@@ -200,7 +210,7 @@ private:
         /***************************************** Draw the obstacles************************************************/
 
         glColor3f(1.0f, 0.0f, 0.0f);
-         glRasterPos2f(0.0f, 0.0f);
+        glRasterPos2f(0.0f, 0.0f);
 
 
         glutSwapBuffers();

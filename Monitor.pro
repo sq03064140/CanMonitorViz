@@ -22,7 +22,7 @@ INCLUDEPATH +=\
                #/usr/local/include/opencv2
 
 LIBS += /usr/local/lib/libopencv_core.so \
-        /my_work/Opencv_Draw/Monitor20200722/Lib/libcontrolcan.so
+        /my_work/Opencv_Draw/Real_Time_Monitor_Visualize/Lib/libcontrolcan.so
 #        /usr/local/lib/libopencv_calib3d.so\
 #        /usr/local/lib/libopencv_contrib.so\
 #        /usr/local/lib/libopencv_features2d.so\
