@@ -29,3 +29,6 @@
 *.exe
 *.out
 *.app
+
+# test_case folder
+test_case
