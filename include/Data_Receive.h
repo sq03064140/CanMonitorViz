@@ -25,7 +25,7 @@ namespace Monitor
 
 using namespace Monitor;
 
-#ifdef OFFLINE_MODE
+// #ifdef OFFLINE_MODE
 
 void *Signal_Recieve_Thread_Fun(void *args)
 {

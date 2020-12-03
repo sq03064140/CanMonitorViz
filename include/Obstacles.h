@@ -11,7 +11,7 @@
 #include "unistd.h"
 #include <cmath>
 
-#define OBJ_0_A 0x700 // object A
+#define OBJ_0_A 0x700 // object A from Vision
 #define OBJ_0_B 0x701
 
 #define OBJ_1_A 0x704
